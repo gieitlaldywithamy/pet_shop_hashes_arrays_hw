@@ -63,3 +63,18 @@ def customer_can_afford_pet(customer, pet)
   new_pet_cost = pet[:price]
   return customer_cash_to_spend >= new_pet_cost
 end
+
+def sell_pet_to_customer(pet_shop, pet, customer)
+  #check customer can afford the pet
+  if customer_can_afford_pet(customer, pet)
+    #take cash away from customer
+    customer[:cash] -= pet[:price]
+    #put the cash in the shop till
+    add_or_remove_cash(pet_shop, pet[:price])
+    #remove pet from stock (to continue metaphor...take the pet outside)
+    remove_pet_by_name(pet_shop, pet[:name])
+    increase_pets_sold(pet_shop, 1)
+    #give the pet to the customer
+    add_pet_to_customer(customer, pet)
+  end
+end
