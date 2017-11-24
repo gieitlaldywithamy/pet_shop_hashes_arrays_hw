@@ -49,3 +49,7 @@ end
 def add_pet_to_stock(pet_shop, pet)
   pet_shop[:pets] << pet
 end
+
+def customer_pet_count(customer)
+  return customer[:pets].length()
+end
