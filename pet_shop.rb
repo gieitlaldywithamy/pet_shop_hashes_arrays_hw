@@ -65,16 +65,24 @@ def customer_can_afford_pet(customer, pet)
 end
 
 def sell_pet_to_customer(pet_shop, pet, customer)
+
+  #check the pet exists
   #check customer can afford the pet
-  if customer_can_afford_pet(customer, pet)
-    #take cash away from customer
-    customer[:cash] -= pet[:price]
-    #put the cash in the shop till
-    add_or_remove_cash(pet_shop, pet[:price])
-    #remove pet from stock (to continue metaphor...take the pet outside)
-    remove_pet_by_name(pet_shop, pet[:name])
-    increase_pets_sold(pet_shop, 1)
-    #give the pet to the customer
-    add_pet_to_customer(customer, pet)
+  if pet_shop[:pets].include? pet
+      
+    if customer_can_afford_pet(customer, pet)
+      #take cash away from customer
+      customer[:cash] -= pet[:price]
+      #put the cash in the shop till
+      add_or_remove_cash(pet_shop, pet[:price])
+      #remove pet from stock (to continue metaphor...take the pet outside)
+      remove_pet_by_name(pet_shop, pet[:name])
+      increase_pets_sold(pet_shop, 1)
+      #give the pet to the customer
+      add_pet_to_customer(customer, pet)
+
+      #why do i have to update the customer pet length?
+    #when it's being accessed in test, i have already modified it?
+    end
   end
 end
