@@ -26,7 +26,7 @@ def pets_by_breed(pet_shop, breed)
   pets_of_breed = []
   for pet in pet_shop[:pets]
     if (pet[:breed] == breed)
-      pets_of_breed << pet
+      pets_of_breed << pet if pet[:breed] == breed
     end
   end
   return pets_of_breed
@@ -69,7 +69,7 @@ def sell_pet_to_customer(pet_shop, pet, customer)
   #check the pet exists
   #check customer can afford the pet
   if pet_shop[:pets].include? pet
-      
+
     if customer_can_afford_pet(customer, pet)
       #take cash away from customer
       customer[:cash] -= pet[:price]
